@@ -18,32 +18,39 @@ use App\Http\Controllers\HomeController;
 use Illuminate\http\Request;
 use Illuminate\http\Response;
 
-
-Route::group(['middleware' => 'auth'], function () { //ログイン認証しないとアクセス制限
-    Route::get('/', [PlacePostController::class, 'top']);
-    Route::get('/place_list', [PlacePostController::class, 'index']);
-    Route::get('/place_list/{place}/detail', [PlacePostController::class, 'detail']);
-    Route::get('/place_post', [PlacePostController::class, 'place_post']);
-    Route::post('/place_post', [PlacePostController::class, 'place_post_store']);
-    Route::get('/{place}/place_edit', [PlacePostController::class, 'place_edit']);
-    Route::put('/place_edit/{place_post}', [PlacePostController::class, 'update']);
-    Route::delete('/{place_post}/place_edit', [PlacePostController::class, 'destroy']);
-    Route::get('/about', [PlacePostController::class, 'about']);
-
-    Route::get('/{place}/post', [PostController::class, 'post']);
-    Route::post('{place}/post', [PostController::class, 'post_store']);
-    Route::get('/{post}/post_edit', [PostController::class, 'post_edit']);
-    Route::put('/post_edit/{post}', [PostController::class, 'update']);
-    Route::delete('/place_list/{post}/detail', [PostController::class, 'destroy']);
-    // Route::delete('/detail/{place}', [PostController::class, 'destroy']);
-
-    Route::get('/sanavi', [SanaviController::class, 'create']);
-    Route::post('/sanavi', [SanaviController::class, 'store']);
-    Route::delete('/sanavi/{sanavi}', [SanaviController::class, 'destroy']);
-    Route::put('/sanavi/{sanavi}', [SanaviController::class, 'update']);
-    Route::get('/sanavi/{sanavi}/show', [SanaviController::class, 'show']);
-    Route::resource('items', 'ItemsController'); //ルーティングファイルを見やすくする
+Route::get('/', function () {
+    return view('index');
 });
+
+
+
+
+// Route::group(['middleware' => 'auth'], function () { //ログイン認証しないとアクセス制限
+
+// Route::get('/', [PlacePostController::class, 'top']);
+// Route::get('/place_list', [PlacePostController::class, 'index']);
+// Route::get('/place_list/{place}/detail', [PlacePostController::class, 'detail']);
+// Route::get('/place_post', [PlacePostController::class, 'place_post']);
+// Route::post('/place_post', [PlacePostController::class, 'place_post_store']);
+// Route::get('/{place}/place_edit', [PlacePostController::class, 'place_edit']);
+// Route::put('/place_edit/{place_post}', [PlacePostController::class, 'update']);
+// Route::delete('/{place_post}/place_edit', [PlacePostController::class, 'destroy']);
+// Route::get('/about', [PlacePostController::class, 'about']);
+
+// Route::get('/{place}/post', [PostController::class, 'post']);
+// Route::post('{place}/post', [PostController::class, 'post_store']);
+// Route::get('/{post}/post_edit', [PostController::class, 'post_edit']);
+// Route::put('/post_edit/{post}', [PostController::class, 'update']);
+// Route::delete('/place_list/{post}/detail', [PostController::class, 'destroy']);
+// // Route::delete('/detail/{place}', [PostController::class, 'destroy']);
+
+// Route::get('/sanavi', [SanaviController::class, 'create']);
+// Route::post('/sanavi', [SanaviController::class, 'store']);
+// Route::delete('/sanavi/{sanavi}', [SanaviController::class, 'destroy']);
+// Route::put('/sanavi/{sanavi}', [SanaviController::class, 'update']);
+// Route::get('/sanavi/{sanavi}/show', [SanaviController::class, 'show']);
+// Route::resource('items', 'ItemsController'); //ルーティングファイルを見やすくする
+// });
 
 Auth::routes();
 
